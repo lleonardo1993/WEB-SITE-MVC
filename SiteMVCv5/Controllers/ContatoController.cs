@@ -33,11 +33,17 @@ namespace SiteMVCv5.Controllers
             ContatoModel contato = _contatoRepositorio.ListarPorId(id);
             return View(contato);
         }
-        public IActionResult Apagar()
+        public IActionResult Apagar(int id)
         {
+            ContatoModel contato = _contatoRepositorio.ListarPorId(id);
 
+            return View(contato);
+        }
 
-            return View();
+        public IActionResult ApagarRegistro(int id)
+        {
+            _contatoRepositorio.Apagar(id);
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
