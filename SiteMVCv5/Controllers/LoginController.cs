@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SiteMVCv5.Models;
+using SiteMVCv5.Repositorio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,13 @@ namespace SiteMVCv5.Controllers
 {
     public class LoginController : Controller
     {
+        private readonly IUsuarioRepositorio _usuarioRepositorio;
+
+        public LoginController(IUsuarioRepositorio usuarioRepositorio)
+        {
+            _usuarioRepositorio = usuarioRepositorio;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -19,11 +27,18 @@ namespace SiteMVCv5.Controllers
         {
             try
             {
+                UsuarioModel usuario = _usuarioRepositorio.BuscarPorLogin(loginModel.Login);
+
                 if (ModelState.IsValid)
                 {
-                    if(loginModel.Login == "adm" && loginModel.Senha == "123")
+                    if(usuario != null)
                     {
-                        return RedirectToAction("Index", "Home");
+                        if (usuario.SenhaValida(loginModel.Senha))
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+                        TempData["MensagemErro"] = $"Senha do usuário é inválida, tente novamente.";
+
                     }
                     TempData["MensagemErro"] = $"Usuário e/ou senha inválido(s). Por favor, tente novamente.";
                     

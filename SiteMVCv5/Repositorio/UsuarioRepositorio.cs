@@ -13,6 +13,11 @@ namespace SiteMVCv5.Repositorio
         {
             this._context = bancoContext;
         }
+        public UsuarioModel BuscarPorLogin(string login)
+        {
+            return _context.Usuarios.FirstOrDefault(x => x.Login.ToUpper() == login.ToUpper());
+            // listar informações no banco onde o login do db é igual ao login "parametro";
+        }
         public UsuarioModel ListarPorId(int id)
         {
             return _context.Usuarios.FirstOrDefault(x => x.Id == id);
@@ -61,5 +66,7 @@ namespace SiteMVCv5.Repositorio
 
             return true;
         }
+
+        
     }
 }
