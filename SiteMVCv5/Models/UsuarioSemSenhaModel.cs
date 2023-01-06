@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SiteMVCv5.Models
 {
-    public class UsuarioModel
+    public class UsuarioSemSenhaModel
     {
         public int Id { get; set; }
 
@@ -21,12 +21,8 @@ namespace SiteMVCv5.Models
         [EmailAddress(ErrorMessage = "Digite um Email Valido!")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Informe o perfil do usuário")]
+        [Required(ErrorMessage = "Selecione o perfil do usuário")]
         public PerfilEnum? Perfil { get; set; }
 
-        [Required(ErrorMessage = "Digite a senha do usuário")]        
-        public string Senha { get; set; }
-        public DateTime DataCadastro { get; set; }
-        public DateTime? DataAtualizacao { get; set; }
     }
 }

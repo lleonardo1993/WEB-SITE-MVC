@@ -103,7 +103,7 @@ namespace SiteMVCv5.Controllers
                     return RedirectToAction("Index");
                 }
 
-                return View("Editar", contato);
+                return View(contato);
 
             }
             catch (Exception erro)

@@ -25,6 +25,48 @@ namespace SiteMVCv5.Controllers
         {
             return View();
         }
+        public IActionResult Editar(int id)
+        {
+            UsuarioModel usuario = _usuarioRepositorio.ListarPorId(id);
+            return View(usuario);
+        }
+
+        public IActionResult ApagarConfirmacao(int id)
+        {
+            UsuarioModel usuario = _usuarioRepositorio.ListarPorId(id);
+
+            return View(usuario);
+        }
+
+        public IActionResult Apagar(int id)
+        {
+            try
+            {
+                bool apagado = _usuarioRepositorio.Apagar(id);
+
+                if (apagado)
+                {
+                    TempData["MensagemSucesso"] = "Usuário excluido com Sucesso!";
+
+                }
+                else
+                {
+                    TempData["MensagemErro"] = "Ops, não conseguimos excluir seu Usuário!";
+
+                }
+                return RedirectToAction("Index");
+
+            }
+            catch (Exception erro)
+            {
+
+                TempData["MensagemErro"] = $"Ops, não conseguimos excluir seu Usuário, mais detalhes do erro: {erro.Message}!";
+                return RedirectToAction("Index");
+
+            }
+        }
+
+
 
         [HttpPost]
         public IActionResult Criar(UsuarioModel usuario)
@@ -47,6 +89,41 @@ namespace SiteMVCv5.Controllers
                 TempData["MensagemErro"] = $"Ops, não conseguimos cadastrar seu usuário, tente novamente, detalhe do erro: {erro.Message}";
                 return RedirectToAction("Index");
             }
+        }
+
+        [HttpPost]
+        public IActionResult Editar(UsuarioSemSenhaModel usuarioSemSenhaModel)
+        {
+            try
+            {
+                UsuarioModel usuario = null;
+
+                if (ModelState.IsValid)
+                {
+                    usuario = new UsuarioModel()
+                    {
+                        Id = usuarioSemSenhaModel.Id,
+                        Nome = usuarioSemSenhaModel.Nome,
+                        Login = usuarioSemSenhaModel.Login,
+                        Email = usuarioSemSenhaModel.Email,
+                        Perfil = usuarioSemSenhaModel.Perfil
+                    };
+
+                    usuario = _usuarioRepositorio.Atualizar(usuario);
+                    TempData["MensagemSucesso"] = "Usuário alterado com Sucesso!";
+                    return RedirectToAction("Index");
+                }
+
+                return View(usuario);
+
+            }
+            catch (Exception erro)
+            {
+
+                TempData["MensagemErro"] = $"Ops, não conseguimos alterar seu usuário, tente novamente, detalhe do erro: {erro.Message}";
+                return RedirectToAction("Index");
+            }
+
         }
 
     }
