@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SiteMVCv5.Filters;
 using SiteMVCv5.Models;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace SiteMVCv5.Controllers
 {
+    [PaginaParaUsuarioLogado]
     public class HomeController : Controller
     {
       

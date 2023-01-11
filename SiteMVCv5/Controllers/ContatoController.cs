@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SiteMVCv5.Filters;
 using SiteMVCv5.Models;
 using SiteMVCv5.Repositorio;
 using System;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace SiteMVCv5.Controllers
 {
+    [PaginaParaUsuarioLogado]
     public class ContatoController : Controller
     {
         private readonly IContatoRepositorio _contatoRepositorio;
