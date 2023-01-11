@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SiteMVCv5.Controllers
 {
-    [PaginaParaUsuarioLogado]
+    [PaginaRestritaSomenteAdmin]
     public class UsuarioController : Controller
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;

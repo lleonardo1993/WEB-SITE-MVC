@@ -30,6 +30,11 @@ namespace SiteMVCv5.Filters
                     context.Result = new RedirectToRouteResult(new RouteValueDictionary { { "controller", "Login" }, { "action", "Index" } });
 
                 }
+
+                if(usuario.Perfil != Enums.PerfilEnum.Admin)
+                {
+                    context.Result = new RedirectToRouteResult(new RouteValueDictionary { { "controller", "Restrito" }, { "action", "Index" } });
+                }
             }
 
             base.OnActionExecuting(context);
