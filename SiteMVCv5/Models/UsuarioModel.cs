@@ -32,5 +32,11 @@ namespace SiteMVCv5.Models
         {
             return Senha == senha;
         }
+
+        public string GerarNovaSenha()
+        {
+            string novaSenha = Guid.NewGuid().ToString().Substring(0, 8);
+            Senha = novaSenha.GerarHash();
+        }
     }
 }

@@ -7,7 +7,7 @@ using System.Linq;
 namespace SiteMVCv5.Repositorio
 {
     public class UsuarioRepositorio : IUsuarioRepositorio
-    {
+    { 
         private readonly BancoContext _context;
         public UsuarioRepositorio(BancoContext bancoContext)
         {
@@ -17,6 +17,10 @@ namespace SiteMVCv5.Repositorio
         {
             return _context.Usuarios.FirstOrDefault(x => x.Login.ToUpper() == login.ToUpper());
             // listar informações no banco onde o login do db é igual ao login "parametro";
+        }
+        public UsuarioModel BuscarPorEmailELogin(string email, string login)
+        {
+            return _context.Usuarios.FirstOrDefault(x => x.Email.ToUpper() == email.ToUpper() && x.Login.ToUpper() == login.ToUpper());
         }
         public UsuarioModel ListarPorId(int id)
         {
@@ -67,6 +71,6 @@ namespace SiteMVCv5.Repositorio
             return true;
         }
 
-        
+      
     }
 }
