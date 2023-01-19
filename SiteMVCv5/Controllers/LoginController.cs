@@ -81,6 +81,9 @@ namespace SiteMVCv5.Controllers
 
                     if (usuario != null)
                     {
+                        string novaSenha = usuario.GerarNovaSenha();
+                        _usuarioRepositorio.Atualizar(usuario);
+
                         TempData["MensagemSucesso"] = $"Enviamos para seu E-mail cadastrado uma nova senha.";
                         return RedirectToAction("Index", "Login");
 
