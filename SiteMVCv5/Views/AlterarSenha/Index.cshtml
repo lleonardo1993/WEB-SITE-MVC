@@ -1,0 +1,27 @@
+﻿@model UsuarioModel
+@using SiteMVCv5.Enums;
+@{
+    ViewData["Title"] = "Alterar senha do usuário";
+}
+
+<div class="text-center">
+
+    <h1 class="display-4">Editar usuário</h1>
+
+</div>
+
+<form asp-controller="AlterarSenha" asp-action="Alterar" method="post">
+
+    
+    <div class="form-group">
+        <label for="senhaAtual">Senha Atual</label>
+        <input type="text" asp-for="SenhaAtual" class="form-control" placeholder="Digite a senha atual do usuário">
+        @Html.ValidationMessageFor(x => x.SenhaAtual)
+    </div>
+
+    <br />
+
+    <button type="submit" class="btn btn-primary w-100 d-block">Editar</button>
+    <br />
+    <a class="btn btn-secondary w-100 d-block" asp-controller="Usuario" asp-action="Index" role="button">Voltar</a>
+</form>
