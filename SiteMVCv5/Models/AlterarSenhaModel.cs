@@ -17,6 +17,7 @@ namespace SiteMVCv5.Models
         public string NovaSenha { get; set; }
 
         [Required(ErrorMessage = "Confirme a nova senha do usuário")]
+        [Compare("NovaSenha", ErrorMessage = "Senha não confere com a nova senha")] // DataAnnotation para comparar senha
         public string ConfirmarNovaSenha { get; set; }
     }
 }
