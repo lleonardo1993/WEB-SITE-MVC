@@ -12,7 +12,7 @@ namespace SiteMVCv5.Data.Map
     {
         public void Configure(EntityTypeBuilder<ContatoModel> builder)
         {
-            builder.HasKey(x => x.Id);
+            builder.HasKey(x => x.Id); 
 
         }
     }
