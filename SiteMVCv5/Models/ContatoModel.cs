@@ -20,5 +20,9 @@ namespace SiteMVCv5.Models
         [Required(ErrorMessage = "Digite o Celular do contato")]
         [Phone(ErrorMessage = "O celular informado não é valido!")]
         public string Celular { get; set; }
+
+        public int UsuarioId { get; set; }
+
+        public UsuarioModel
     }
 }
