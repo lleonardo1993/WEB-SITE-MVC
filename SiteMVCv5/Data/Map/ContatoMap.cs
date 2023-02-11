@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 
 namespace SiteMVCv5.Data.Map
 {
+    // Relacionamento entre tabelas
     public class ContatoMap : IEntityTypeConfiguration<ContatoModel>
     {
         public void Configure(EntityTypeBuilder<ContatoModel> builder)
         {
-            builder.HasKey(x => x.Id); 
-
+            builder.HasKey(x => x.Id);
+            //builder.Property(x => x.Nome).HasMaxLength(100);
+            builder.HasOne(x => x.Usuario);
         }
     }
 }
