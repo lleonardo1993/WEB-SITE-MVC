@@ -1,4 +1,5 @@
-﻿using SiteMVCv5.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SiteMVCv5.Data;
 using SiteMVCv5.Models;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,9 @@ namespace SiteMVCv5.Repositorio
         }
         public List<UsuarioModel> BuscarTodos()
         {
-            return _context.Usuarios.ToList();
+            return _context.Usuarios
+                .Include(x => x.Contatos)
+                .ToList();
         }
 
         public UsuarioModel Adicionar(UsuarioModel usuario)
